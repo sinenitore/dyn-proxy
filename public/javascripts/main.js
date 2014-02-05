@@ -9,10 +9,8 @@ $('#btn-lb-add').on('click', function (e) {
 	}
 }
 $.ajax({
-	url: ("lb/action.html"),
-	json: JSON.stringify(lbDetails),
-	type: POST,
-  	contentType: 'application/json; charset=UTF-8',
+	url: ("lb/add/" + lbDetails.name + "/" + lbDetails.node + "/" + encodeURIComponent(lbDetails.url)),
+	type: GET,
 	success: function(data) {
 		console.log('Success')
 	}
