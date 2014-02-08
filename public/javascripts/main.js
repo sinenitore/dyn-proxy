@@ -1,18 +1,21 @@
 $('#btn-lb-add').on('click', function (e) {
-	var lbNode = $('#txt-lb-node').text()
-	var lbURL = $('#txt-lb-url').text()
-	var lbMethod = $('#slt-lb-method').value
-	var lbDetails = {'action': 'lb-add',
-			'node': lbNode,
-			'method': lbMethod,
-    			'url': lbURL
+	var lbNode = $('#txt-lb-node').val()
+	var lbURL = $('#txt-lb-url').val()
+	var lbName = $('#txt-lb-name').val()
+	var lbMethod = $('#slt-lb-method').val()
+	var lbDetails = {action: 'lb-add',
+			name: lbName,
+			node: lbNode,
+			method: lbMethod,
+			url: lbURL
 	}
-}
-$.ajax({
-	url: ("lb/add/" + lbDetails.name + "/" + lbDetails.node + "/" + encodeURIComponent(lbDetails.url)),
-	type: GET,
-	success: function(data) {
-		console.log('Success')
-	}
-})
+	console.log(lbDetails)
+	$.ajax({
+		url: ('lb/add/' + lbDetails.name + '/' + lbDetails.node + '/' + encodeURIComponent(lbDetails.url)),
+		type: 'GET',
+		success: function(data) {
+			console.log('Success')
+		}
+	});
+});
 		

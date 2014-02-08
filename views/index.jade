@@ -1,27 +1,32 @@
 extends layout
 
 block content
-	div.container
-		h1 Program Name
-		p Hello World
-	.row
-		.col-md-12
-			I will put some text here. This will probably be some instructional information.
-			.row
-				.col-md-3
-					.form-group
-						label(for="txt-url") URL Endpoint:
-							input.form-control(type="text", name="url-endpoint", id="txt-url")
-				.col-md-3
-					.form-group
-						label(for"txt-lb-node") Node:
-							input.form-control(type="text", name="lb-node", id="txt-lb-node")
-				.col-md-3
-					.form-group
-						label(for"slt-lb-method") Method:
-							select.form-control(name="load-method", id="slt-lb-method")
-								option(Value="roundrobin") Round Robin
-								option(Value="weighted") Weighted
-				.col-md-3
-					.form-group
-						button.btn.btn-default(type="button", id="btn-lb-add") Create LB
+  div.container
+    h1 Program Name
+    p Hello World
+    .row
+      .col-md-12
+        I will put some text here. This will probably be some instructional information.
+    .row
+      .col-md-3
+        .form-group
+          label(for="txt-lb-name") Name:
+          input#txt-lb-name.form-control(type="text", name="lb-name")
+      .col-md-3
+        .form-group
+          label(for="txt-lb-url") URL Endpoint:
+          input.form-control(type="text", name="txt-lb-url", id="txt-lb-url")
+      .col-md-3
+        .form-group
+          label(for"txt-lb-node") Node:
+          input.form-control(type="text", name="lb-node", id="txt-lb-node")
+      .col-md-3
+        .form-group
+          label(for"slt-lb-method") Method:
+          select.form-control(name="load-method", id="slt-lb-method")
+            option(Value="roundrobin") Round Robin
+            option(Value="weighted") Weighted
+    .row
+      .col-md-3.col-md-offset-9
+        .form-group
+          button.btn.btn-default(type="button", id="btn-lb-add") Create LB
