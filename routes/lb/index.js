@@ -9,25 +9,32 @@ exports.add = function(req, res){
 	      'node': req.params.node,
 	      'url': req.params.url}
   console.log(data)
-  var etcd = require('etcd');
-  etcd.configure({
-    host: '172.18.4.36',
-    port: 4001
+  var etcdjs = require('nodejs-etcd');
+  var etcd = new etcdjs({
+    url: 'http://172.17.0.68:4001'
   });
   console.log(etcd)
-//  function setConf(cdata, callback){
-//    etcd.set('/lb/instance/' + data.name + '/node', data.node, function (err) {
-//      if (err) throw err;
-//    }
-//    etcd.set('/lb/instance/' + data.name + '/url', data.node, function (err) {
-//      if (err) throw err;
-//    }
-    etcd.set('test', 'ping', function(err){
-      if (err) {
-        res.send(err)
-      } else {
-        res.redirect('/list')
-      }
-    });
-//  }
+  function setConf(cdata, callback){
+    data.count = 0
+    etcd.write({
+      key: '/lb/instance/' + data.name + '/node',
+      value: data.node,},
+      function (err, resp, body) {
+        if (err) data.err += err;
+	data.count++
+        if (data.count = 2) callback(data)
+      });
+    etcd.write({
+      key: '/lb/instance/' + data.name + '/url', 
+      value: data.node,},
+      function (err, resp, body) {
+        if (err) data.err += err;
+        data.count++
+	if (data.count = 2) callback(data)
+      });
+    };
+  setConf(data, function(data){
+    console.log(data)
+    res.send(data)
+  });
 };

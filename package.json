@@ -23,6 +23,7 @@
     "grunt-cli": "~0.1.11",
     "grunt-env": "~0.4.1",
     "bower": "latest",
-    "nodejs-etcd": "latest"
+    "nodejs-etcd": "latest",
+    "async": "latest"
   }
 }
